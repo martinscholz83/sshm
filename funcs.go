@@ -24,7 +24,7 @@ func ListEntries(c *cli.Context) error {
 		fmt.Printf("++++++++Connection %d++++++++\n", i)
 		fmt.Printf("Name: %s\n", conn[i].Name)
 		fmt.Printf("Username: %s\n", conn[i].Username)
-		fmt.Printf("Ip: %s\n", conn[i].IP)
+		fmt.Printf("IP: %s\n", conn[i].IP)
 		fmt.Println("++++++++++++++++++++++++++++")
 		fmt.Println("")
 	}
@@ -85,7 +85,7 @@ func DeletConnection(c *cli.Context) error {
 		fmt.Printf("++++++++Connection %d++++++++\n", i)
 		fmt.Printf("Name: %s\n", conns[i].Name)
 		fmt.Printf("Username: %s\n", conns[i].Username)
-		fmt.Printf("Ip: %s\n", conns[i].IP)
+		fmt.Printf("IP: %s\n", conns[i].IP)
 		fmt.Println("++++++++++++++++++++++++++++")
 		fmt.Println("")
 	}
@@ -125,7 +125,7 @@ func Connect(c *cli.Context) error {
 		fmt.Printf("++++++++Connection %d++++++++\n", i)
 		fmt.Printf("Name: %s\n", conns[i].Name)
 		fmt.Printf("Username: %s\n", conns[i].Username)
-		fmt.Printf("Ip: %s\n", conns[i].IP)
+		fmt.Printf("IP: %s\n", conns[i].IP)
 		fmt.Println("++++++++++++++++++++++++++++")
 		fmt.Println("")
 	}
