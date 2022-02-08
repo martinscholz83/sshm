@@ -40,7 +40,7 @@ func NewConnection(c *cli.Context) error {
 
 	input.Scan()
 
-	if len(input.Text()) < 0 {
+	if len(input.Text()) <= 0 {
 		return errors.New("please enter a valid Name")
 	}
 
@@ -49,7 +49,7 @@ func NewConnection(c *cli.Context) error {
 	fmt.Println("Username:")
 	input.Scan()
 
-	if len(input.Text()) < 0 {
+	if len(input.Text()) <= 0 {
 		return errors.New("please enter a valid Username")
 	}
 
@@ -58,7 +58,7 @@ func NewConnection(c *cli.Context) error {
 	fmt.Println("IP:")
 	input.Scan()
 
-	if len(input.Text()) < 0 {
+	if len(input.Text()) <= 0 {
 		return errors.New("please enter a valid IP address")
 	}
 
