@@ -74,6 +74,42 @@ func NewConnection(c *cli.Context) error {
 }
 
 func DeletConnection(c *cli.Context) error {
+	conns, err := cm.LoadConnections()
+	if err != nil {
+		return err
+	}
+
+	fmt.Println("please select a connection to delete")
+	fmt.Println("")
+	for i := 0; i < len(conns); i++ {
+		fmt.Printf("++++++++Connection %d++++++++\n", i)
+		fmt.Printf("Name: %s\n", conns[i].Name)
+		fmt.Printf("Username: %s\n", conns[i].Username)
+		fmt.Printf("Ip: %s\n", conns[i].IP)
+		fmt.Println("++++++++++++++++++++++++++++")
+		fmt.Println("")
+	}
+	fmt.Println("")
+	fmt.Println("connection number:")
+	input := bufio.NewScanner(os.Stdin)
+
+	input.Scan()
+
+	if len(input.Text()) < 0 {
+		return errors.New("please enter a valid id")
+	}
+
+	id, err := strconv.Atoi(input.Text())
+	if err != nil {
+		return err
+	}
+
+	if err = cm.DeletConnection(id); err != nil {
+		return err
+	}
+
+	fmt.Println("successfully deleted connection")
+
 	return nil
 }
 
@@ -84,6 +120,7 @@ func Connect(c *cli.Context) error {
 	}
 
 	fmt.Println("please select a connection")
+	fmt.Println("")
 	for i := 0; i < len(conns); i++ {
 		fmt.Printf("++++++++Connection %d++++++++\n", i)
 		fmt.Printf("Name: %s\n", conns[i].Name)

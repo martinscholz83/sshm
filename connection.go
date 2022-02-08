@@ -103,6 +103,51 @@ func (c ConnectionManager) AddConnection(con Connection) error {
 	return nil
 }
 
-func (c ConnectionManager) SelectConnection(id string) (Connection, error) {
-	return Connection{}, nil
+func (c ConnectionManager) DeletConnection(id int) error {
+	fileIn, err := os.OpenFile(c.Path, os.O_RDONLY, 0755)
+	if err != nil {
+		return err
+	}
+
+	bytes, err := ioutil.ReadAll(fileIn)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if err := fileIn.Close(); err != nil {
+		log.Fatal(err)
+	}
+
+	// delete all content because new content is smaller then existing
+	if err := os.Truncate(c.Path, 0); err != nil {
+		return err
+	}
+
+	fileOut, err := os.OpenFile(c.Path, os.O_RDWR, 0644)
+	if err != nil {
+		return err
+	}
+
+	var conns Connections
+	json.Unmarshal([]byte(bytes), &conns)
+
+	conns = append(conns[:id], conns[id+1:]...)
+
+	js, err := json.MarshalIndent(conns, "", "    ")
+	if err != nil {
+		return err
+	}
+	log.Println(conns)
+
+	_, err = fileOut.Write(js)
+
+	if err != nil {
+		return err
+	}
+
+	if err := fileOut.Close(); err != nil {
+		log.Fatal(err)
+	}
+
+	return nil
 }
