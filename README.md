@@ -1,5 +1,5 @@
 # sshm
-sshm is a tool to manage your SSH connections from your terminal. It will store it's configuration under `~/.sshm/connections.json`
+sshm is a tool to manage your SSH connections from your terminal. It will store its configuration under `~/.sshm/connections.json`
 
 ## Usage
 ```
