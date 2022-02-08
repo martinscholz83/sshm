@@ -79,7 +79,7 @@ func DeletConnection(c *cli.Context) error {
 		return err
 	}
 
-	fmt.Println("please select a connection to delete")
+	fmt.Println("Please select a connection to delete")
 	fmt.Println("")
 	for i := 0; i < len(conns); i++ {
 		fmt.Printf("++++++++Connection %d++++++++\n", i)
@@ -90,7 +90,7 @@ func DeletConnection(c *cli.Context) error {
 		fmt.Println("")
 	}
 	fmt.Println("")
-	fmt.Println("connection number:")
+	fmt.Println("Connection:")
 	input := bufio.NewScanner(os.Stdin)
 
 	input.Scan()
