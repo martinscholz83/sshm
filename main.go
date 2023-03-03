@@ -10,7 +10,7 @@ import (
 func main() {
 	app := &cli.App{
 		Name:  "sshm",
-		Usage: "Simple but powerful cli manager for your ssh connections.",
+		Usage: "Simple cli manager for your ssh connections.",
 		Commands: []*cli.Command{
 			{
 				Name:    "list",
