@@ -22,11 +22,7 @@ func ListEntries(c *cli.Context) error {
 
 	for i := 0; i < len(conn); i++ {
 		fmt.Printf("++++++++Connection %d++++++++\n", i)
-		fmt.Printf("Name: %s\n", conn[i].Name)
-		fmt.Printf("Username: %s\n", conn[i].Username)
-		fmt.Printf("IP: %s\n", conn[i].IP)
-		fmt.Println("++++++++++++++++++++++++++++")
-		fmt.Println("")
+		printConnection(&conn[i])
 	}
 	return nil
 }
@@ -83,11 +79,7 @@ func DeletConnection(c *cli.Context) error {
 	fmt.Println("")
 	for i := 0; i < len(conns); i++ {
 		fmt.Printf("++++++++Connection %d++++++++\n", i)
-		fmt.Printf("Name: %s\n", conns[i].Name)
-		fmt.Printf("Username: %s\n", conns[i].Username)
-		fmt.Printf("IP: %s\n", conns[i].IP)
-		fmt.Println("++++++++++++++++++++++++++++")
-		fmt.Println("")
+		printConnection(&conns[i])
 	}
 	fmt.Println("")
 	fmt.Println("Connection:")
@@ -95,7 +87,7 @@ func DeletConnection(c *cli.Context) error {
 
 	input.Scan()
 
-	if len(input.Text()) < 0 {
+	if len(input.Text()) <= 0 {
 		return errors.New("please enter a valid id")
 	}
 
@@ -123,11 +115,7 @@ func Connect(c *cli.Context) error {
 	fmt.Println("")
 	for i := 0; i < len(conns); i++ {
 		fmt.Printf("++++++++Connection %d++++++++\n", i)
-		fmt.Printf("Name: %s\n", conns[i].Name)
-		fmt.Printf("Username: %s\n", conns[i].Username)
-		fmt.Printf("IP: %s\n", conns[i].IP)
-		fmt.Println("++++++++++++++++++++++++++++")
-		fmt.Println("")
+		printConnection(&conns[i])
 	}
 	fmt.Println("")
 	fmt.Println("connection number:")
@@ -135,7 +123,7 @@ func Connect(c *cli.Context) error {
 
 	input.Scan()
 
-	if len(input.Text()) < 0 {
+	if len(input.Text()) <= 0 {
 		return errors.New("please enter a valid Name")
 	}
 
@@ -163,4 +151,12 @@ func Connect(c *cli.Context) error {
 
 	log.Println("closed connection")
 	return nil
+}
+
+func printConnection(con *Connection) {
+	fmt.Printf("Name: %s\n", con.Name)
+	fmt.Printf("Username: %s\n", con.Username)
+	fmt.Printf("IP: %s\n", con.IP)
+	fmt.Println("++++++++++++++++++++++++++++")
+	fmt.Println("")
 }
